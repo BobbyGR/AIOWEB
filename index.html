@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIO Miner - Cryptocurrency Mining Profitability Calculator</title>
+    <meta name="description" content="Calculate your crypto mining profitability for Bitcoin, Ethereum Classic, Litecoin, Monero, Kaspa, and more. Real-time prices, power costs, and profit estimates.">
+    <meta name="keywords" content="crypto mining calculator, mining profitability, bitcoin mining, ethereum classic mining, GPU mining, ASIC mining, cryptocurrency">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aiominer.com/">
+
+    <meta property="og:title" content="AIO Miner - Crypto Mining Profitability Calculator">
+    <meta property="og:description" content="Calculate your crypto mining profitability with real-time prices. Supports BTC, ETC, LTC, XMR, KAS, RVN, ZEC, and DOGE.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aiominer.com/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AIO Miner - Crypto Mining Profitability Calculator">
+    <meta name="twitter:description" content="Calculate your crypto mining profitability with real-time prices.">
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4359456075359384"
+         crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="container nav-container">
+        <a href="#" class="logo">
+            <span class="logo-icon">&#9878;</span>
+            <span>AIO<span class="logo-accent">Miner</span></span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#calculator">Calculator</a></li>
+            <li><a href="#coins">Coins</a></li>
+            <li><a href="#hardware">Hardware</a></li>
+            <li><a href="#guides">Guides</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+        <h1>Crypto Mining <span class="gradient-text">Profitability Calculator</span></h1>
+        <p class="hero-subtitle">Real-time mining estimates for 8 popular coins. Enter your hashrate, power costs, and see your potential daily, monthly, and yearly earnings.</p>
+        <a href="#calculator" class="btn btn-primary btn-lg">Start Calculating</a>
+    </div>
+</section>
+
+<!-- AdSense: Top Leaderboard -->
+<div class="ad-container">
+    <div class="container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4359456075359384"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+</div>
+
+<section class="calculator-section" id="calculator">
+    <div class="container">
+        <div class="section-header">
+            <h2>Mining Calculator</h2>
+            <p>Select a coin, enter your mining specs, and get instant profitability estimates.</p>
+        </div>
+
+        <div class="calculator-layout">
+            <div class="calculator-main">
+                <div class="coin-selector">
+                    <button class="coin-tab active" data-coin="bitcoin">
+                        <span class="coin-symbol">BTC</span>
+                        <span class="coin-name">Bitcoin</span>
+                    </button>
+                    <button class="coin-tab" data-coin="ethereum-classic">
+                        <span class="coin-symbol">ETC</span>
+                        <span class="coin-name">Ethereum Classic</span>
+                    </button>
+                    <button class="coin-tab" data-coin="litecoin">
+                        <span class="coin-symbol">LTC</span>
+                        <span class="coin-name">Litecoin</span>
+                    </button>
+                    <button class="coin-tab" data-coin="monero">
+                        <span class="coin-symbol">XMR</span>
+                        <span class="coin-name">Monero</span>
+                    </button>
+                    <button class="coin-tab" data-coin="kaspa">
+                        <span class="coin-symbol">KAS</span>
+                        <span class="coin-name">Kaspa</span>
+                    </button>
+                    <button class="coin-tab" data-coin="ravencoin">
+                        <span class="coin-symbol">RVN</span>
+                        <span class="coin-name">Ravencoin</span>
+                    </button>
+                    <button class="coin-tab" data-coin="zcash">
+                        <span class="coin-symbol">ZEC</span>
+                        <span class="coin-name">Zcash</span>
+                    </button>
+                    <button class="coin-tab" data-coin="dogecoin">
+                        <span class="coin-symbol">DOGE</span>
+                        <span class="coin-name">Dogecoin</span>
+                    </button>
+                </div>
+
+                <form class="calc-form" id="calcForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hashrate">Hashrate</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="hashrate" step="any" min="0" placeholder="100">
+                                <span class="input-unit" id="hashrateUnit">TH/s</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="power">Power Consumption</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="power" step="any" min="0" placeholder="3000">
+                                <span class="input-unit">Watts</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="electricityCost">Electricity Cost</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="electricityCost" step="any" min="0" placeholder="0.10" value="0.10">
+                                <span class="input-unit">$/kWh</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-info">
+                        <div class="form-group">
+                            <label for="poolFee">Pool Fee</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="poolFee" step="any" min="0" max="100" placeholder="1" value="1">
+                                <span class="input-unit">%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Algorithm</label>
+                            <div class="info-value" id="algorithm">SHA-256</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Coin Price</label>
+                            <div class="info-value" id="coinPrice">Loading...</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Calculate Profit</button>
+                </form>
+
+                <div class="results-panel" id="resultsPanel" style="display:none;">
+                    <h3>Estimated Earnings</h3>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <span class="result-label">Daily</span>
+                            <span class="result-coins" id="dailyCoins">0 BTC</span>
+                            <span class="result-revenue" id="dailyRevenue">$0.00</span>
+                            <span class="result-cost" id="dailyCost">-$0.00 power</span>
+                            <span class="result-profit" id="dailyProfit">$0.00</span>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-label">Monthly</span>
+                            <span class="result-coins" id="monthlyCoins">0 BTC</span>
+                            <span class="result-revenue" id="monthlyRevenue">$0.00</span>
+                            <span class="result-cost" id="monthlyCost">-$0.00 power</span>
+                            <span class="result-profit" id="monthlyProfit">$0.00</span>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-label">Yearly</span>
+                            <span class="result-coins" id="yearlyCoins">0 BTC</span>
+                            <span class="result-revenue" id="yearlyRevenue">$0.00</span>
+                            <span class="result-cost" id="yearlyCost">-$0.00 power</span>
+                            <span class="result-profit" id="yearlyProfit">$0.00</span>
+                        </div>
+                    </div>
+                    <p class="results-disclaimer">Estimates based on current network conditions. Actual results may vary due to difficulty changes, price fluctuations, and hardware performance.</p>
+                </div>
+            </div>
+
+            <!-- AdSense: Calculator Sidebar -->
+            <aside class="calculator-sidebar">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4359456075359384"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="vertical"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<section class="coins-section" id="coins">
+    <div class="container">
+        <div class="section-header">
+            <h2>Mineable Coins</h2>
+            <p>Live prices and key mining stats for popular proof-of-work cryptocurrencies.</p>
+        </div>
+        <div class="coins-grid" id="coinsGrid">
+            <!-- Populated by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- AdSense: Mid-Content Banner -->
+<div class="ad-container">
+    <div class="container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4359456075359384"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+</div>
+
+<section class="hardware-section" id="hardware">
+    <div class="container">
+        <div class="section-header">
+            <h2>Recommended Mining Hardware</h2>
+            <p>Top-performing ASIC and GPU miners for maximizing your returns.</p>
+        </div>
+        <div class="hardware-grid">
+            <div class="hardware-card">
+                <div class="hardware-badge">ASIC</div>
+                <h3>Bitmain Antminer S21 Pro</h3>
+                <ul class="hardware-specs">
+                    <li><strong>Algorithm:</strong> SHA-256 (Bitcoin)</li>
+                    <li><strong>Hashrate:</strong> 234 TH/s</li>
+                    <li><strong>Power:</strong> 3,531W</li>
+                    <li><strong>Efficiency:</strong> 15.0 J/TH</li>
+                </ul>
+                <a href="#" class="btn btn-outline" data-affiliate="antminer-s21-pro">Check Price &rarr;</a>
+            </div>
+            <div class="hardware-card">
+                <div class="hardware-badge">ASIC</div>
+                <h3>Bitmain Antminer KS5 Pro</h3>
+                <ul class="hardware-specs">
+                    <li><strong>Algorithm:</strong> kHeavyHash (Kaspa)</li>
+                    <li><strong>Hashrate:</strong> 21 TH/s</li>
+                    <li><strong>Power:</strong> 3,150W</li>
+                    <li><strong>Efficiency:</strong> 150 J/TH</li>
+                </ul>
+                <a href="#" class="btn btn-outline" data-affiliate="antminer-ks5-pro">Check Price &rarr;</a>
+            </div>
+            <div class="hardware-card">
+                <div class="hardware-badge">ASIC</div>
+                <h3>Bitmain Antminer L9</h3>
+                <ul class="hardware-specs">
+                    <li><strong>Algorithm:</strong> Scrypt (LTC/DOGE)</li>
+                    <li><strong>Hashrate:</strong> 16 GH/s</li>
+                    <li><strong>Power:</strong> 3,360W</li>
+                    <li><strong>Efficiency:</strong> 210 J/GH</li>
+                </ul>
+                <a href="#" class="btn btn-outline" data-affiliate="antminer-l9">Check Price &rarr;</a>
+            </div>
+            <div class="hardware-card">
+                <div class="hardware-badge">GPU</div>
+                <h3>NVIDIA RTX 4070 Ti Super</h3>
+                <ul class="hardware-specs">
+                    <li><strong>Algorithms:</strong> KawPow, Etchash</li>
+                    <li><strong>VRAM:</strong> 16 GB GDDR6X</li>
+                    <li><strong>Power:</strong> ~200W (mining)</li>
+                    <li><strong>Best For:</strong> RVN, ETC</li>
+                </ul>
+                <a href="#" class="btn btn-outline" data-affiliate="rtx-4070-ti">Check Price &rarr;</a>
+            </div>
+            <div class="hardware-card">
+                <div class="hardware-badge">GPU</div>
+                <h3>AMD Radeon RX 7900 XTX</h3>
+                <ul class="hardware-specs">
+                    <li><strong>Algorithms:</strong> Etchash, KawPow</li>
+                    <li><strong>VRAM:</strong> 24 GB GDDR6</li>
+                    <li><strong>Power:</strong> ~250W (mining)</li>
+                    <li><strong>Best For:</strong> ETC, RVN</li>
+                </ul>
+                <a href="#" class="btn btn-outline" data-affiliate="rx-7900-xtx">Check Price &rarr;</a>
+            </div>
+            <div class="hardware-card">
+                <div class="hardware-badge">CPU</div>
+                <h3>AMD Ryzen 9 7950X</h3>
+                <ul class="hardware-specs">
+                    <li><strong>Algorithm:</strong> RandomX (Monero)</li>
+                    <li><strong>Hashrate:</strong> ~24 KH/s</li>
+                    <li><strong>Power:</strong> ~170W</li>
+                    <li><strong>Best For:</strong> XMR</li>
+                </ul>
+                <a href="#" class="btn btn-outline" data-affiliate="ryzen-7950x">Check Price &rarr;</a>
+            </div>
+        </div>
+        <p class="affiliate-disclaimer">Links may contain affiliate referrals. We may earn a commission at no extra cost to you.</p>
+    </div>
+</section>
+
+<section class="guides-section" id="guides">
+    <div class="container">
+        <div class="section-header">
+            <h2>Mining Guides &amp; Tips</h2>
+            <p>Everything you need to start mining or optimize your existing setup.</p>
+        </div>
+        <div class="guides-grid">
+            <article class="guide-card">
+                <div class="guide-icon">&#9889;</div>
+                <h3>Getting Started with Mining</h3>
+                <p>New to crypto mining? Learn the basics: choosing hardware, picking a coin, setting up mining software, and joining a pool. We cover everything from your first hash to your first payout.</p>
+            </article>
+            <article class="guide-card">
+                <div class="guide-icon">&#9881;</div>
+                <h3>Optimizing Power Efficiency</h3>
+                <p>Electricity is your biggest ongoing cost. Learn how to undervolt GPUs, tune ASIC firmware, negotiate electricity rates, and calculate your true breakeven point for maximum profitability.</p>
+            </article>
+            <article class="guide-card">
+                <div class="guide-icon">&#128274;</div>
+                <h3>Solo vs. Pool Mining</h3>
+                <p>Should you mine solo or join a pool? Understand the trade-offs: variance, fees, payout structures (PPS, PPLNS, FPPS), and minimum payouts. Find the right strategy for your hashrate.</p>
+            </article>
+            <article class="guide-card">
+                <div class="guide-icon">&#127777;</div>
+                <h3>Cooling &amp; Maintenance</h3>
+                <p>Keep your rigs running cool and stable. Best practices for airflow, ambient temperature management, thermal paste reapplication, dust cleaning, and monitoring for hardware failures.</p>
+            </article>
+            <article class="guide-card">
+                <div class="guide-icon">&#128200;</div>
+                <h3>When to Mine vs. Buy</h3>
+                <p>Mining isn't always more profitable than just buying crypto. Learn how to compare the two strategies using hashrate ROI, difficulty projections, and market cycle analysis.</p>
+            </article>
+            <article class="guide-card">
+                <div class="guide-icon">&#128176;</div>
+                <h3>Tax &amp; Accounting for Miners</h3>
+                <p>Mining income is taxable in most jurisdictions. Understand how to track cost basis, report mining revenue, deduct electricity and hardware expenses, and stay compliant.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- AdSense: Bottom Banner -->
+<div class="ad-container">
+    <div class="container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4359456075359384"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+</div>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>Start Mining Smarter</h2>
+        <p>Use our calculator to find the most profitable coin for your setup. Updated with real-time market data.</p>
+        <a href="#calculator" class="btn btn-primary btn-lg">Open Calculator</a>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="logo-icon">&#9878;</span>
+                    <span>AIO<span class="logo-accent">Miner</span></span>
+                </a>
+                <p>Your all-in-one cryptocurrency mining resource. Profitability calculator, hardware guides, and mining tips.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#calculator">Calculator</a></li>
+                    <li><a href="#coins">Coins</a></li>
+                    <li><a href="#hardware">Hardware</a></li>
+                    <li><a href="#guides">Guides</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a></li>
+                    <li><a href="https://whattomine.com/" target="_blank" rel="noopener">WhatToMine</a></li>
+                    <li><a href="https://minerstat.com/" target="_blank" rel="noopener">Minerstat</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AIOminer.com &mdash; All rights reserved. Prices powered by <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a>.</p>
+            <p class="footer-disclaimer">Mining profitability estimates are for informational purposes only. Cryptocurrency mining involves financial risk. Always do your own research.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
